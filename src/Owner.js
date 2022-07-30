@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
 
-function Owner({certificateContract}) {
+function Owner({certificateContract , currentAccount}) {
 
     const [tokenId , setTokenId ] = useState("");
-    const [NFTowner , setNFTOwner] = useState("");
+    const [NFTowner , setNFTOwner] = useState("null");
 
     const handleGetOwner = async () => {
         let temp = await certificateContract.ownerOf(tokenId);
@@ -21,7 +21,18 @@ function Owner({certificateContract}) {
                 <button 
                     style={{height : "45px" , width: "95%"  , backgroundColor : " #50b7f5" , border : "none" , color : "white" ,fontWeight : "700 " , borderRadius : "30px" ,cursor : "pointer"}}
                 onClick={handleGetOwner}>Find Owner</button>
-                <h2>{NFTowner}</h2>
+                <div style={{color : "white"}}>
+                    {(NFTowner.toLowerCase()===currentAccount.toLowerCase()) ? 
+                    <div> 
+                        You are the owner of NFT
+                    </div> :
+                    (!(NFTowner==="null")) ?
+                    <div>
+                        You are not he current owner of this NFT.
+                    </div> :
+                    ""
+                }
+                </div>
             </div>
         </div>
                 

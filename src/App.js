@@ -176,6 +176,7 @@ const transferNFT = async ( toAddress , tokenId) => {
             <Route path="/owner" element= {
                 <Owner
                 certificateContract= {certificateContract}
+                currentAccount = {currentAccount}
                  />
             } />
             <Route path="/" element={<Reward 
